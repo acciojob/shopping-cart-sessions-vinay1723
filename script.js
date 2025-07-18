@@ -8,7 +8,7 @@ const products = [
 ];
 
 // Load existing cart from sessionStorage or use empty array
-let cartItems = JSON.parse(sessionStorage.getItem("cartItems")) || [];
+let cartItems = JSON.parse(sessionStorage.getItem("cart")) || [];
 
 // DOM elements
 const productList = document.getElementById("product-list");
@@ -64,7 +64,7 @@ function addToCart(buttonElement) {
   const item = products.find((p) => p.id === productId);
   if (item) {
     cartItems.push(item);
-    sessionStorage.setItem("cartItems", JSON.stringify(cartItems));
+    sessionStorage.setItem("cart", JSON.stringify(cartItems));
     renderCart();
   }
 }
@@ -72,14 +72,14 @@ function addToCart(buttonElement) {
 // Remove item from cart
 function removeFromCart(index) {
   cartItems.splice(index, 1);
-  sessionStorage.setItem("cartItems", JSON.stringify(cartItems));
+  sessionStorage.setItem("cart", JSON.stringify(cartItems));
   renderCart();
 }
 
 // Clear cart
 function clearCart() {
   cartItems.length = 0; // empty array
-  sessionStorage.removeItem("cartItems");
+  sessionStorage.removeItem("cart");
   renderCart();
 }
 
